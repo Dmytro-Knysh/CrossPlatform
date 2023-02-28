@@ -16,6 +16,7 @@ export class GraphPage implements OnInit {
   a: number = 0;
   xx: string[] = [];
   yy: number[] = [];
+  s: string = "";
   data1: string[] =[];
   constructor() { Chart.register(...registerables);}
   ngOnInit(){
@@ -64,8 +65,8 @@ export class GraphPage implements OnInit {
       }
       this.xx.push(x.toFixed(1));
       this.yy.push(parseFloat(y.toFixed(1)));
-      let s = "x= " + x.toFixed(1) + "y= "+y.toFixed(1);
-      this.data1.push(s);
+      this.s = "x= " + x.toFixed(1) + "y= "+y.toFixed(1);
+      this.data1.push(this.s);
       x = x + this.h;
     }
     this.lineChartMethod();
