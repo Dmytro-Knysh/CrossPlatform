@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title size="large">Лабораторна робота №4</ion-title>
+  </ion-toolbar>
+   <ion-toolbar>
+    <ion-title>Виконав студент групи КН-32 Книш Дмитро</ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="dark" menu="first"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Лабораторні роботи</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+      <ion-card-header>
+        <ion-card-title>Лабораторна робота №4</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-card-title>Необхідно додати у розроблений в попередній лабораторній роботі застосунок сторінку для роботи з абстрактними класами. Сторінку викликати у головному меню застосунку. </ion-card-title>
+        <ion-input type="number" value="5" #Inputn></ion-input>
+        <ion-button (click)="ras(Inputn.value)">Розрахунок</ion-button>
+        <ion-list>
+          <ion-item button *ngFor="let item of furniture; index as i">
+            <ion-text>
+              <ion-label >
+                <p><span>Назва:</span>{{item.getName()}}</p>
+              </ion-label>
+              <ion-label >
+                <p><span>Ціна:</span>{{item.getPrice()}}</p>
+              </ion-label>
+            </ion-text>
+          </ion-item>
+        </ion-list>
+        <ion-label>
+          <p><span></span>{{getAvgDivan()}}</p>
+        </ion-label>
+        <ion-label>
+          <p><span></span>{{getAvgShafa()}}</p>
+        </ion-label>
+      </ion-card-content>
+  </ion-card>
+</ion-content>
