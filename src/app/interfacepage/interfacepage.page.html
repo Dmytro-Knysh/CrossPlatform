@@ -1,0 +1,16 @@
+<app-my-header name="Лабораторна робота №6"></app-my-header>
+<ion-content [fullscreen] = "true">
+  <ion-card>
+     <ion-card>
+      <ion-card-header>
+        <ion-title size="large">Завдання</ion-title>
+        <p>Дана наступна ієрархія класів:</p>
+        <p>Тест, іспит, випускний іспит, випробування</p>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button (click) = "ras()">Розрахунок</ion-button>
+        <ion-item>{{show}}</ion-item>
+      </ion-card-content>
+     </ion-card>
+  </ion-card>
+</ion-content>
