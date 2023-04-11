@@ -1,0 +1,58 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Предмет</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Назва дисципліни</ion-label>
+        <ion-input id="Sub-Name" type="text" formControlName="SubName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Кафедра</ion-label>
+        <ion-input id="Caf-Name" type="text" formControlName="CafName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Кількість лекцій</ion-label>
+        <ion-input id="Lecture" type="text" formControlName="lecture"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Кількість лабораторних</ion-label>
+        <ion-input id="Lab" type="text" formControlName="lab"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Вид контролю (іспит/залік)</ion-label>
+        <ion-input id="type-control" type="text" formControlName="TypeControl"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">ПІБ викладача, який читає лекції</ion-label>
+        <ion-input id="Pib-Lec" type="text" formControlName="PibLec"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">ПІБ викладача, що веде лабораторні заняття</ion-label>
+        <ion-input id="Pib-Lab" type="text" formControlName="PibLab"></ion-input>
+      </ion-item>
+      <ion-card formArrayName="Teachers">
+        <ion-card-header>
+          <ion-card-title>Викладачі</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-button color="tertiary" (click)="addPIBofTeachers()">
+            <ion-icon slot="strat" name="add"></ion-icon>
+            Додати викладача
+          </ion-button>
+          <ion-item *ngFor="let teachers of getControls(); let i = index">
+            <ion-input type="text" formControlName = {{i}} placeholder="ПІБ викладача"></ion-input>
+            <ion-button color = "tertiary" (click)=" deletePIBofTeachers(i)">
+              <ion-icon slot="start" name="trash"></ion-icon>
+              Видалити
+            </ion-button>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+  <ion-button type="submit" color="my-color" expand="block" fill="outline">
+    Submit
+  </ion-button>
+</form>

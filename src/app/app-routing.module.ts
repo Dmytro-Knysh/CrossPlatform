@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'servicepage',
     loadChildren: () => import('./servicepage/servicepage.module').then( m => m.ServicepagePageModule)
   },
+  {
+    path: 'lab8-blank',
+    loadChildren: () => import('./lab8-blank/lab8-blank.module').then( m => m.Lab8BlankPageModule)
+  },
 ];
 @NgModule({
   imports: [
