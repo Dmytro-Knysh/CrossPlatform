@@ -1,0 +1,17 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>
+      <ion-label position="floating">Назва предмету:</ion-label>
+        <ion-input [value]="teacher.name" #Inputa></ion-input>
+    </ion-card-title>
+    <ion-card-subtitle>
+      <ion-label position="floating">Назва факультету:</ion-label>
+        <ion-input [value]="teacher.department" #Inputb></ion-input>
+      <ion-label position="floating">Кількість лекцій:</ion-label>
+        <ion-input [value]="teacher.numOfLect" #Inputc></ion-input>
+      <ion-label position="floating">Кількість лабораторних:</ion-label>
+        <ion-input [value]="teacher.numOfLabs" #Inputd></ion-input>
+    </ion-card-subtitle>
+  </ion-card-header>
+  <ion-button (click)="save(Inputa.value, Inputb.value, Inputc.value, Inputd.value)">Зберігти</ion-button>
+</ion-card>

@@ -9,9 +9,11 @@ import { Lab8BlankPageRoutingModule } from './lab8-blank-routing.module';
 import { Lab8BlankPage } from './lab8-blank.page';
 import { MyFormComponent } from './my-form/my-form.component';
 import { MyHeaderModule } from "../my-header/my-header.component.module";
+import { ViewformComponent } from './viewform/viewform.component';
+import { UpdateformComponent } from './updateform/updateform.component';
 
 @NgModule({
-    declarations: [Lab8BlankPage, MyFormComponent],
+    declarations: [Lab8BlankPage, MyFormComponent, ViewformComponent, UpdateformComponent],
     imports: [
         CommonModule,
         FormsModule,

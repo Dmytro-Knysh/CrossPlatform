@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Subject } from '../my-form/class/subject';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { valueOrDefault } from 'chart.js/dist/helpers/helpers.core';
 import { nameValidator } from './service/nameValidator';
 import { NameValidatorService } from './service/name-validator.service';
 import { ControlValidatorService } from './service/control-validator.service';
@@ -15,42 +14,51 @@ import { controlValidator } from './service/controlValidator';
   styleUrls: ['./my-form.component.scss'],
 })
 export class MyFormComponent implements OnInit {
-  myForm !: FormGroup;
-  teacher !: Subject;
+  @Output() teacherAdd: EventEmitter<Subject> = new EventEmitter<Subject>();
+  teacherForm !: FormGroup;
+  subject!: Subject;
   constructor( private fb: FormBuilder, private alertController: AlertController) {
-    this.myForm = this.fb.group({
+    this.teacherForm = this.fb.group({
         SubName:['',[nameValidator]],
         CafName:['',[nameValidator]],
+        lecture:[0],
+        lab:[0],
+        TypeControl:['',[controlValidator]],
         PibLec:['',[nameValidator]],
         PibLab:['',[nameValidator]],
-        TypeControl:['',[controlValidator]],
-        numOfLect:['',[Validators.required]],
-        numOfLabs:['',[Validators.required]],
-        PIBofTeachers:new FormArray([new FormControl]),
+        PIBs:new FormArray([new FormControl()]),
     });
    }
 
-   addPIBofTeachers(){
+   addPIBofTeachers() {
     console.log("Add");
-    (this.myForm.controls['PIBofTeachers'] as FormArray).push(new FormControl())
+    (this.teacherForm.controls['PIBs'] as FormArray).push(
+      new FormControl()
+    )
    }
    deletePIBofTeachers(i:any){
-    console.log("Add");
-    (this.myForm.controls['PIBofTeachers'] as FormArray).push(new FormControl())
-   }
+    console.log('Delete');
+    (this.teacherForm.controls['PIBs'] as FormArray).removeAt(i)
+    }
    getControls(){
-    return (this.myForm.get('PIBofTeachers') as FormArray).controls;
+    return (this.teacherForm.get('PIBs') as FormArray).controls;
    }
    onSubmit(){
-    let d1 = this.myForm.value.SubName;
-    let d2 = this.myForm.value.CafName;
-    let d3 = this.myForm.value.PibLec;
-    let d4 = this.myForm.value.PibLab;
-    let c1 = this.myForm.value.TypeControl;
+    let d1 = this.teacherForm.value.SubName;
+    let d2 = this.teacherForm.value.CafName;
+    let lec = this.teacherForm.value.lecture;
+    let lab = this.teacherForm.value.lab;
+    let d3 = this.teacherForm.value.PibLec;
+    let d4 = this.teacherForm.value.PibLab;
+    let c1 = this.teacherForm.value.TypeControl;
+    let arr = this.teacherForm.value.PIBs;
     let valid1 = new ControlValidatorService();
     let valid = new NameValidatorService();
+    console.log(this.teacherForm.get('PIBs') as FormArray);
     if(valid1.validate_control(c1))
     {
+      this.subject = new Subject(d1,d2,lec,lab, c1,d3,d4, arr);
+      this.teacherAdd.emit(this.subject);
       console.log("SubmitControl");
     }
     else{

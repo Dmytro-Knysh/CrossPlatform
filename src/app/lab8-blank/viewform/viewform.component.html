@@ -1,0 +1,18 @@
+<app-my-form (teacherAdd)="addTeacher($event)"></app-my-form>
+<ion-card *ngFor="let teacher of teachers; let i = index">
+    <ion-card-header>
+      <ion-card-title>{{teacher.name}}</ion-card-title>
+      <ion-card-subtitle>{{teacher.department}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+     {{teacher.numOfLect}}
+     {{teacher.numOfLabs}}
+     <h2>Array</h2>
+     <ion-item *ngFor="let pibs of teacher.PIBofTeachers">
+        {{pibs}}
+     </ion-item>
+    </ion-card-content>
+    <ion-button (click)="update()">Редагувати</ion-button>
+    <app-updateform [teacher]="teacher" [show]="show_update" *ngIf="show_update" (showChange)="showUp($event)" (teacherChange)="update_save($event, i)">
+    </app-updateform>
+  </ion-card>

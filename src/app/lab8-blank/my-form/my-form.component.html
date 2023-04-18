@@ -1,4 +1,4 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
   <ion-card>
     <ion-card-header>
       <ion-card-title>Предмет</ion-card-title>
@@ -32,7 +32,7 @@
         <ion-label position="floating">ПІБ викладача, що веде лабораторні заняття</ion-label>
         <ion-input id="Pib-Lab" type="text" formControlName="PibLab"></ion-input>
       </ion-item>
-      <ion-card formArrayName="Teachers">
+      <ion-card formArrayName="PIBs">
         <ion-card-header>
           <ion-card-title>Викладачі</ion-card-title>
         </ion-card-header>
@@ -52,7 +52,7 @@
       </ion-card>
     </ion-card-content>
   </ion-card>
-  <ion-button type="submit" color="my-color" expand="block" fill="outline">
+  <ion-button type="submit" expand="block" fill="outline" [disabled]="!teacherForm.valid" > 
     Submit
   </ion-button>
 </form>
