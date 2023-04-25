@@ -30,6 +30,10 @@ const routes: Routes = [
     path: 'lab8-blank',
     loadChildren: () => import('./lab8-blank/lab8-blank.module').then( m => m.Lab8BlankPageModule)
   },
+  {
+    path: 'observablepage',
+    loadChildren: () => import('./observablepage/observablepage.module').then( m => m.ObservablepagePageModule)
+  },
 ];
 @NgModule({
   imports: [

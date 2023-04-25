@@ -1,0 +1,42 @@
+<app-my-header name="Лабораторна робота 10"></app-my-header>
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-button (click)="nextAct()">Наступний актор</ion-button>
+    <ion-label>
+      Поточний актор
+    </ion-label>
+    <ion-label>
+      {{act.name}}
+    </ion-label>
+    <ion-label>
+      {{act.id}}
+    </ion-label>
+  </ion-item>
+  <ion-label position="stacked"> Доступні театри</ion-label>
+  <ion-item *ngFor="let theater of theaterList.searchTheaterResult; let j = index">
+    {{theater}}
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Введіть ім'я нового актора</ion-label>
+    <ion-input #InputAct></ion-input>
+    <ion-button (click)="addActor(InputAct.value)">Додати актора</ion-button>
+  </ion-item>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        Додати новий театр
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label position="stacked">Введіть назву</ion-label>
+      <ion-input #InputName></ion-input>
+      <ion-label position="stacked">Введіть місто де розташовується театр</ion-label>
+      <ion-input #InputPosition></ion-input>
+      <ion-label position="stacked">Введіть дні роботи театру</ion-label>
+      <ion-input #InputWork></ion-input>
+      <ion-label position="stacked">Введіть id акторів</ion-label>
+      <ion-input #InputActor></ion-input>
+      <ion-button (click)="addTheater(InputName.value, InputPosition.value, InputWork.value, InputAct.value)">Додати театр</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
