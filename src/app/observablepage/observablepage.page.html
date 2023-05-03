@@ -2,20 +2,14 @@
 <ion-content [fullscreen]="true">
   <ion-item>
     <ion-button (click)="nextAct()">Наступний актор</ion-button>
-    <ion-label>
-      Поточний актор
-    </ion-label>
-    <ion-label>
-      {{act.name}}
-    </ion-label>
-    <ion-label>
-      {{act.id}}
-    </ion-label>
+    <ion-label> Поточний актор </ion-label>
+    <ion-label>{{act.name}}</ion-label>
   </ion-item>
-  <ion-label position="stacked"> Доступні театри</ion-label>
-  <ion-item *ngFor="let theater of theaterList.searchTheaterResult; let j = index">
-    {{theater}}
-  </ion-item>
+  <ion-card *ngFor="let theater of theaterList.searchTheater; let j = index">
+      <ion-item>{{theater.Name}}</ion-item>
+      <ion-item>{{theater.Price}}</ion-item>
+      
+  </ion-card>
   <ion-item>
     <ion-label position="stacked">Введіть ім'я нового актора</ion-label>
     <ion-input #InputAct></ion-input>
@@ -36,7 +30,9 @@
       <ion-input #InputWork></ion-input>
       <ion-label position="stacked">Введіть id акторів</ion-label>
       <ion-input #InputActor></ion-input>
-      <ion-button (click)="addTheater(InputName.value, InputPosition.value, InputWork.value, InputAct.value)">Додати театр</ion-button>
+      <ion-label position="stacked">Введіть ціну квитка</ion-label>
+      <ion-input #InputPrice></ion-input>
+      <ion-button (click)="addTheater(InputName.value, InputPosition.value, InputWork.value, InputActor.value, InputPrice.value)">Додати театр</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>

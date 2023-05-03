@@ -1,7 +1,7 @@
 export class Theater{
-    name:string = "";
-    place:string = "";
-    actor_id: number = 0;
-    work:string = "";//Дні роботи
-    price:number = 0;
+    Name:string = "";
+    Place:string = "";
+    Actor_id: number = 0;
+    Work:string = "";//Дні роботи
+    Price:number = 0;
 }

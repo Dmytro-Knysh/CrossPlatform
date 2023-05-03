@@ -5,6 +5,7 @@ import { Actor } from './class/actor';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { Theater } from './class/theater';
 import { ConfigService } from './service/config.service';
+import { FirebaseService } from './service/firebase.service';
 
 @Component({
   selector: 'app-observablepage',
@@ -24,34 +25,64 @@ export class ObservablepagePage implements OnInit {
   act: Actor = new Actor();
 
   count = 0;
-  constructor() { }
 
+  bdTheater = 'Theater';
+  bdActor = 'Actor'
+
+  constructor(public fbService:FirebaseService) { 
+  }
+  fetchTask(bd:any, op:any){
+    this.fbService.getRecordList(bd,op).valueChanges().subscribe(res => {
+      console.log(res)
+      if(op) this.theaterList.theaterList = res;
+      else{
+        this.actors.act = res;
+        this.act = this.actors.act[this.count];
+        this.theaterList.search(this.act.id);
+      }
+    })
+  }
+  
   ngOnInit() {
-    const actSub = this.configService.act$ 
-    .subscribe(() => {this.act = this.configService.act$.value;});
+    this.fetchTask(this.bdTheater, true);
+    let taskRes = this.fbService.getRecordList(this.bdTheater, true);
+    taskRes.snapshotChanges().subscribe(
+    )
+
+    this.fetchTask(this.bdActor,false);
+    let taskRes1 = this.fbService.getRecordList(this.bdActor, false);
+    taskRes1.snapshotChanges().subscribe(
+    )
+
+    const actSub = this.configService.act$
+    .subscribe(() => { this.act = this.configService.act$.value; });
     this.subscription.push(actSub);
   }
   nextAct(){
-    if(this.count < this.actors.act.size - 1){
+    if(this.count < this.actors.act.length - 1){
       this.count++;
     }
     else this.count = 0;
-    this.configService.setActor(this.actors.act.get(this.count));
+    this.configService.setActor(this.actors.act[this.count]);
   }
-  addTheater(name:any, place:any, work:any, actor:any){
+  addTheater(name:any, place:any, work:any, actor1:any, price:any){
+    console.log(actor1);
     let theat = new Theater();
-    theat.name = name;
-    theat.place = place;
-    theat.work = work;
-    theat.actor_id = actor;
-    //theat.actor_id = this.act.id;
+    theat.Name = name;
+    theat.Place = place;
+    theat.Work = work;
+    theat.Actor_id = actor1;
+    theat.Price = price;
+
+    this.fbService.createTheater(theat);
+    this.theaterList.search(this.act.id);
     this.theaterList.add(theat);
   }
   addActor(NewActor:any){
     let a = new Actor();
-    a.id = this.actors.act.size;
+    a.id = this.actors.act.length;
     a.name = NewActor;
-    this.actors.add(a);
+    this.fbService.createActor(a);
   }
   ngOnDestroy(){
     this.subscription.forEach(s => s.unsubscribe());

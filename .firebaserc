@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "lab11-63ca4": {
+      "hosting": {
+        "app": [
+          "lab11-63ca4"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "lab11-63ca4"
+  }
+}

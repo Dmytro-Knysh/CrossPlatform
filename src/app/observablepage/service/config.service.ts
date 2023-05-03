@@ -16,10 +16,9 @@ export class ConfigService {
 
 
   setActor(act:Actor){
+    console.log("Зміни!!!!!!!");
     this.act$.next(act);
   }
   constructor() { }
 }
-
-var actList = new actorList();
-const DEFAULT_ACTOR = actList.act.get(0);
+const DEFAULT_ACTOR = {"id":1, "name":"Ім'я1"}
