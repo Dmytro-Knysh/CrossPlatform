@@ -1,12 +1,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyCWg8RBuaEWojdqcSGKORKW67E5yVTApbg",
-    authDomain: "lab11-63ca4.firebaseapp.com",
-    databaseURL: "https://lab11-63ca4-default-rtdb.firebaseio.com",
-    projectId: "lab11-63ca4",
-    storageBucket: "lab11-63ca4.appspot.com",
-    messagingSenderId: "283193461398",
-    appId: "1:283193461398:web:8c55c0478c0a97472210b7"
+    apiKey: "AIzaSyDAbGs0LwxB-zkCsXrgEAbU8VpoptOJvfM",
+    authDomain: "lab11-77711.firebaseapp.com",
+    databaseURL: "https://lab11-77711-default-rtdb.firebaseio.com",
+    projectId: "lab11-77711",
+    storageBucket: "lab11-77711.appspot.com",
+    messagingSenderId: "960305202077",
+    appId: "1:960305202077:web:77cf147ad93e2214faa574",
+    measurementId: "G-PHEFN5V2YT"
   }
 };

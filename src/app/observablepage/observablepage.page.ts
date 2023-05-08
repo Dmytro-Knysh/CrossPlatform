@@ -73,17 +73,49 @@ export class ObservablepagePage implements OnInit {
     theat.Work = work;
     theat.Actor_id = actor1;
     theat.Price = price;
+    theat.id = this.theaterList.theaterList.length;
 
     this.fbService.createTheater(theat);
     this.theaterList.search(this.act.id);
     this.theaterList.add(theat);
   }
+  changeActor(name: any, newName:any) {
+    let index = -1;
+    for (let i = 0; i < this.actors.act.length; i++) {
+      if (this.actors.act[i].name === name) {
+        index = i;
+        break;
+      }
+    }
+    console.log(this.actors.act[index].id);
+    if (index >= 0 && index <= this.actors.act.length) {
+      let NewActor = new Actor();
+      NewActor.name = newName;
+      NewActor.id = this.actors.act[index].id;
+      this.fbService.updateActor(this.actors.act[index].id.toString(), NewActor,'Actor');
+    }
+  }
+  
   addActor(NewActor:any){
     let a = new Actor();
     a.id = this.actors.act.length;
     a.name = NewActor;
     this.fbService.createActor(a);
   }
+  delActor(name: any) {
+   let index = -1;
+    for (let i = 0; i < this.actors.act.length; i++) {
+      if (this.actors.act[i].name === name) {
+        index = i;
+        break;
+      }
+    }
+    console.log(this.actors.act[index].id);
+    if (index >= 0 && index <= this.actors.act.length) {
+      this.fbService.deleteActor(this.actors.act[index].id, 'Actor');
+    }
+  }
+ 
   ngOnDestroy(){
     this.subscription.forEach(s => s.unsubscribe());
   }
